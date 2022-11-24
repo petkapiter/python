@@ -1,0 +1,23 @@
+net = input( "Введите ip вида (10.1.1.0/24): " )
+ip, mask = net.split( "/" )
+ip_list = ip.split( "." )
+mask = int(mask)
+bin_mask = "1" * mask + "0" * (32 - mask)
+print(bin_mask)
+
+
+ip_output = '''
+    Network:
+    {0:<8} {1:<8} {2:<8} {3:<8}
+    {0:08b} {1:08b} {2:08b} {3:08b}
+    '''
+print(ip_output.format(int(ip_list[0]), int(ip_list[1]), int(ip_list[2]), int(ip_list[3])))
+
+mask_output = '''
+    Mask:
+    /{0}
+    {1:<8} {2:<8} {3:<8} {4:<8}
+    {1:08b} {2:08b} {3:08b} {4:08b}
+    '''
+
+print(mask_output.format(mask, int(bin_mask[0:8], 2), int(bin_mask[8:16], 2), int(bin_mask[16:24], 2), int(bin_mask[24:32],)))
